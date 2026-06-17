@@ -2,10 +2,11 @@ name: Go CI Pipeline
 
 on:
   push:
-    branches:["main"]
+    branches:
+     -main
   pull_request:
-    branches:["main"]
-
+    branches:
+     -main
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -16,10 +17,10 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
-          go-version:'1.22'
+          go-version:"1.22"
 
       - name: Install dependencies
         run: go mod tidy
 
-      - name:Run tests
-        run:go test ./...   
+      - name: Run tests
+        run: go test ./...
