@@ -24,19 +24,11 @@ jobs:
 
       - name: Run tests
         run: go test ./...
-<<<<<<< HEAD
   build:
    needs: test
    runs-on: ubuntu-latest
    steps:
      - uses: actions/checkout@v4
-=======
- build:
-  needs: test
-  runs-on: ubuntu-latest
-  steps:
-    - uses: actions/checkout@v4
->>>>>>> ac3541b7ac0c95d5651f6368d579fec0df8a9f8a
 
      - uses: actions/setup-go@v5
        with:
@@ -46,4 +38,10 @@ jobs:
        run: go vet ./...
 
      - name: Build application
-       run: go build -v .
+       run: go build -o app .
+     
+    -  name: Upload artifact
+       uses: actions/upload-artifact@v4
+       with:
+          name: my-app
+          path: app
